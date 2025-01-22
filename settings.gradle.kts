@@ -19,5 +19,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Ruffle"
+rootProject.name = "SCDownload"
 include(":app")
