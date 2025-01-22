@@ -6,9 +6,6 @@ authors = ["Psylo"]
 edition = "2025"
 resolver = "2"
 
-[lib]
-crate-type = ["cdylib"]
-
 [profile.release]
 strip = "symbols"
 
