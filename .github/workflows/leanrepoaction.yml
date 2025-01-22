@@ -13,8 +13,14 @@ jobs:
 
       - name: Set up GitHub CLI
         run: |
-          curl -s https://raw.githubusercontent.com/cli/cli/trunk/script/install.sh | bash
-          gh auth login --with-token < ${GITHUB_TOKEN}
+          # Install GitHub CLI using official package
+          sudo apt update
+          sudo apt install -y gh
+
+      - name: Authenticate GitHub CLI
+        run: |
+          # Authenticate GitHub CLI with the GitHub token
+          echo "${{ secrets.TOKEN }}" | gh auth login --with-token
 
       - name: List all workflow runs and delete failed ones
         run: |
