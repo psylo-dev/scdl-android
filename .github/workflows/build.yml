@@ -1,7 +1,7 @@
 name: Build
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manuelle Ausführung erlaubt
 
 env:
   CARGO_TERM_COLOR: always
@@ -22,20 +22,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Rust toolchain
-        uses: dtolnay/rust-toolchain@stable
+      - name: Set up Rust toolchain
+        uses: actions/setup-rust@v1
         with:
-          toolchain: stable
+          rust-version: stable
           targets: ${{ matrix.rust-target }}
 
-      - name: Cache Cargo output
-        uses: Swatinem/rust-cache@v2
-        with:
-          shared-key: ${{ matrix.rust-target }}
-          save-if: ${{ github.ref == 'refs/heads/main' }}
-
       - name: Install cargo-ndk
-        run: cargo install cargo-ndk
+        run: |
+          # Install cargo-ndk for cross-compiling Android libraries
+          cargo install cargo-ndk
 
       - name: Build native libs
         run: |
@@ -79,4 +75,3 @@ jobs:
         with:
           name: scdl-release-apks
           path: app/build/outputs/apk/release/*.apk
-
