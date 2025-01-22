@@ -13,11 +13,11 @@ plugins {
 }
 
 android {
-    namespace = "rs.ruffle"
+    namespace = "rs.scdownload"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "rs.ruffle"
+        applicationId = "rs.scdownload"
         minSdk = 26
         targetSdk = 35
         versionCode = 1
